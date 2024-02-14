@@ -39,7 +39,20 @@ function uploadImg(index) {
     text.textContent = images[index].text;
 }
 
-//prova
-uploadImg(0);
+//carica la prima img
+let activeIndex = 3;
+uploadImg(activeIndex);
 
+//frecce right left
+const leftArrow = document.querySelector("#left-arrow");
+leftArrow.addEventListener("click", function () {
+
+    activeIndex--;
+
+    if (activeIndex < 0) {
+        activeIndex = images.length - 1;
+    }
+
+    uploadImg(activeIndex);
+});
 
