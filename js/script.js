@@ -43,7 +43,7 @@ function uploadImg(index) {
 let activeIndex = 3;
 uploadImg(activeIndex);
 
-//frecce right left
+//frecce left
 const leftArrow = document.querySelector("#left-arrow");
 leftArrow.addEventListener("click", function () {
 
@@ -51,6 +51,19 @@ leftArrow.addEventListener("click", function () {
 
     if (activeIndex < 0) {
         activeIndex = images.length - 1;
+    }
+
+    uploadImg(activeIndex);
+});
+
+//frecce right
+const rightArrow = document.querySelector("#right-arrow");
+rightArrow.addEventListener("click", function () {
+
+    activeIndex++;
+
+    if (activeIndex >= images.length) {
+        activeIndex = 0;
     }
 
     uploadImg(activeIndex);
