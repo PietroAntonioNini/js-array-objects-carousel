@@ -39,33 +39,61 @@ function uploadImg(index) {
     text.textContent = images[index].text;
 }
 
-//carica la prima img
-let activeIndex = 3;
+//caric0 la prima img
+let activeIndex = 0;
 uploadImg(activeIndex);
 
-//frecce up
+//ottiengo tutti gli elementi img-small del thumbnails
+let imgSmallElements = document.querySelectorAll('#img-small img');
+let activeCount = 0;
+
+//aggiungo la class active al primo elemento
+imgSmallElements[activeCount].classList.add('active');
+
+//freccia up
 const upArrow = document.querySelector("#up-arrow");
 upArrow.addEventListener("click", function () {
 
+    //rimuovo la classe active dall'immagine corrente
+    imgSmallElements[activeCount].classList.remove('active');
+
     activeIndex--;
+    activeCount--;
 
     if (activeIndex < 0) {
         activeIndex = images.length - 1;
     }
 
+    if (activeCount < 0) {
+        activeCount = images.length - 1;
+    }
+
     uploadImg(activeIndex);
+
+    //aggiungo la classe active all'immagine corrente
+    imgSmallElements[activeCount].classList.add('active');
 });
 
-//frecce down
+//freccia down
 const downArrow = document.querySelector("#down-arrow");
 downArrow.addEventListener("click", function () {
 
+    //rimuovo la classe active dall'immagine corrente
+    imgSmallElements[activeCount].classList.remove('active');
+
     activeIndex++;
+    activeCount++
 
     if (activeIndex >= images.length) {
         activeIndex = 0;
     }
 
-    uploadImg(activeIndex);
-});
+    if (activeCount >= images.length) {
+        activeCount = 0;
+    }
 
+    uploadImg(activeIndex);
+
+    //aggiungo la classe active all'immagine corrente
+    imgSmallElements[activeCount].classList.add('active');
+});
