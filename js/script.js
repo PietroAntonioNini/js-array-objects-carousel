@@ -127,6 +127,9 @@ let autoplayInterval = null;
 
 function startAutoplay() {
 
+    //ferma l'autoplay
+    clearInterval(autoplayInterval);
+
     if (!autoplayInterval) {
         autoplayInterval = setInterval(() => {
 
@@ -163,4 +166,47 @@ function stopAutoplay() {
     }
 }
 
-startAutoplay();
+//Bottoni
+
+//seleziono i bottoni
+const startAutoplayButton = document.querySelector("#start-autoplay");
+const stopAutoplayButton = document.querySelector("#stop-autoplay");
+const reverseAutoplayButton = document.querySelector("#reverse-autoplay");
+
+//assegno l'event listener ai bottoni
+
+//Al bottone start assegno la function che avvia il timer
+startAutoplayButton.addEventListener("click", startAutoplay);
+
+//Al bottone stop assegno la function che stoppa il timer
+stopAutoplayButton.addEventListener("click", stopAutoplay);
+
+//Al bottone reverse assegno la function che inverte la selezione dell'autoplay
+reverseAutoplayButton.addEventListener("click", function () {
+
+    //ferma l'autoplay
+    clearInterval(autoplayInterval);
+
+    //come prima ma invertito
+    autoplayInterval = setInterval(() => {
+
+        activeIndex--;
+        activeCount--;
+
+        if (activeIndex < 0) {
+            activeIndex = images.length - 1;
+        }
+
+        if (activeCount < 0) {
+            activeCount = images.length - 1;
+            imgSmallElements[0].classList.remove("active");
+        }
+
+        uploadImg(activeIndex);
+
+        imgSmallElements[activeCount].classList.add("active");
+        imgSmallElements[activeCount + 1].classList.remove("active");
+
+    }, 3000);
+
+});
