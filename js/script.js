@@ -48,14 +48,14 @@ let imgSmallElements = document.querySelectorAll('#img-small img');
 let activeCount = 0;
 
 //aggiungo la class active al primo elemento
-imgSmallElements[activeCount].classList.add('active');
+imgSmallElements[activeCount].classList.add("active");
 
 //freccia up
 const upArrow = document.querySelector("#up-arrow");
 upArrow.addEventListener("click", function () {
 
     //rimuovo la classe active dall'immagine corrente
-    imgSmallElements[activeCount].classList.remove('active');
+    imgSmallElements[activeCount].classList.remove("active");
 
     activeIndex--;
     activeCount--;
@@ -71,7 +71,7 @@ upArrow.addEventListener("click", function () {
     uploadImg(activeIndex);
 
     //aggiungo la classe active all'immagine corrente
-    imgSmallElements[activeCount].classList.add('active');
+    imgSmallElements[activeCount].classList.add("active");
 });
 
 //freccia down
@@ -79,7 +79,7 @@ const downArrow = document.querySelector("#down-arrow");
 downArrow.addEventListener("click", function () {
 
     //rimuovo la classe active dall'immagine corrente
-    imgSmallElements[activeCount].classList.remove('active');
+    imgSmallElements[activeCount].classList.remove("active");
 
     activeIndex++;
     activeCount++
@@ -95,5 +95,27 @@ downArrow.addEventListener("click", function () {
     uploadImg(activeIndex);
 
     //aggiungo la classe active all'immagine corrente
-    imgSmallElements[activeCount].classList.add('active');
+    imgSmallElements[activeCount].classList.add("active");
+});
+
+console.log(imgSmallElements);
+
+//agiungo un event listener ad ogni immagine del carosello
+imgSmallElements.forEach((currentElement, index) => {
+
+    currentElement.addEventListener("click", function() {
+
+        //aggiorna l'activeIndex e l'activeCount in base all'elemento cliccato
+        activeIndex = index;
+        activeCount = index;
+
+        //rimuovi la classe active a tutti
+        imgSmallElements.forEach(img => img.classList.remove("active"));
+
+        //aggiungo la classe active all'elemento cliccato
+        this.classList.add("active");
+
+        uploadImg(activeIndex);
+        
+    });
 });
