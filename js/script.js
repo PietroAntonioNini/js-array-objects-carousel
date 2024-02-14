@@ -119,3 +119,48 @@ imgSmallElements.forEach((currentElement, index) => {
         
     });
 });
+
+//autoplay ogni 3 secondi
+
+//setto l'intervallo dell'autoplay 
+let autoplayInterval = null;
+
+function startAutoplay() {
+
+    if (!autoplayInterval) {
+        autoplayInterval = setInterval(() => {
+
+            activeIndex++;
+            activeCount++;
+
+            if (activeIndex >= images.length) {
+                activeIndex = 0;
+            }
+
+            if (activeCount >= images.length) {
+                activeCount = 0;
+                imgSmallElements[4].classList.remove("active");
+            }
+
+            //carico l'img
+            uploadImg(activeIndex);
+
+            //aggiungo la classe active al thumbnails attuale e la rimuovo da quello precedente
+            imgSmallElements[activeCount].classList.add("active");
+            imgSmallElements[activeCount - 1].classList.remove("active");
+
+        }, 3000);
+    }
+};
+
+function stopAutoplay() {
+
+    if (autoplayInterval) {
+
+        //fermo l'autoplay e lo risetto "null"
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+    }
+}
+
+startAutoplay();
