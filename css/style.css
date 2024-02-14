@@ -9,9 +9,7 @@
     max-width: 950px;
     margin: 200px auto;
 
-
 }
-
 
 #slider {
     position: relative;
@@ -49,8 +47,6 @@
     color: white;
     font-size: 1.5em;
     text-shadow: 1px 4px 3px black;
-
-    
 }
 
 #slider #arrows > * {
@@ -63,4 +59,28 @@
     cursor: pointer;
 
     transform: scale(1.2);
+}
+
+#description {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    padding: 12px;
+
+    direction: rtl;
+}
+
+#description #title {
+    margin-bottom: 8px;
+
+    font-size: 2.5em;
+    text-transform: capitalize;
+    color: white;
+}
+
+#description #text {
+    font-size: 1.5em;
+
+    color: white;
 }
